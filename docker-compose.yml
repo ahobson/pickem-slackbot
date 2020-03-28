@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+
+  # Code
+  sls:
+    ports: [ "3000:3000" ]
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      - WEBHOOK_URL
+      - SIGNING_SECRET
+      - SLS_DEBUG
+    command: npx sls offline --host 0.0.0.0 --printOutput
+    tty: true
+    stdin_open: true

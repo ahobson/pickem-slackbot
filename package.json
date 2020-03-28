@@ -1,0 +1,51 @@
+{
+  "name": "pickem-bot-serverless",
+  "version": "0.0.1",
+  "description": "Serverless pickem bot",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint --ext .ts src",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.31",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.5",
+    "@types/qs": "^6.5.3",
+    "@typescript-eslint/eslint-plugin": "^2.3.2",
+    "@typescript-eslint/eslint-plugin-tslint": "^2.3.2",
+    "@typescript-eslint/parser": "^2.3.2",
+    "aws-sdk": "^2.569.0",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "fork-ts-checker-webpack-plugin": "^1.5.1",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2",
+    "serverless": "1.54.0",
+    "serverless-offline": "6.0.0-alpha.41",
+    "serverless-webpack": "^5.3.1",
+    "ts-jest": "^24.1.0",
+    "ts-loader": "^6.1.0",
+    "ts-node": "^8.4.1",
+    "tslint": "^5.20.0",
+    "types-registry": "^0.1.459",
+    "typescript": "^3.6.3",
+    "webpack": "^4.41.2",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "dependencies": {
+    "@slack/events-api": "^2.3.0",
+    "@slack/web-api": "^5.4.0",
+    "qs": "^6.9.1",
+    "request": "^2.88.0",
+    "source-map": "^0.7.3",
+    "source-map-support": "^0.5.16",
+    "ts-node-dev": "^1.0.0-pre.44"
+  }
+}

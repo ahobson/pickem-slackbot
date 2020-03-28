@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  sls:
+    command: npx node-dev node_modules/.bin/sls offline --host 0.0.0.0
+    container_name: pickem_bot_sls
+    environment:
+      AWS_PROFILE:
+      PROMPT_DIRTRIM: 2
+      PS1: '\w# '
+      STATE_URL: file://${PWD}/tmp/state.json
+    working_dir: "${PWD}"
+    volumes:
+      - pickem-sync:$HOME/src/truss/git/pickem-slackbot:nocopy
+      - /private/var/folders:/var/folders:cached
+      - ~/src/docker-root-home:/root:cached
+
+volumes:
+  pickem-sync:
+    external: true
+
+networks:
+  default:
+    name: pickem_bot_default

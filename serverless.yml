@@ -1,0 +1,56 @@
+# For full config options, check the docs:
+#    docs.serverless.com
+
+service: pickem-bot
+
+frameworkVersion: "=1.54.0"
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'offline'}
+  region: ${env:AWS_REGION}
+
+package:
+  excludeDevDependencies: true
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+custom:
+  config:
+    signingSecret:
+      offline: ${env:SLACK_SIGNING_SECRET}
+      dev: ${env:/app/pickembot/dev/slack-signing-secret~true}
+    apiToken:
+      offline: ${env:SLACK_API_TOKEN}
+      dev: ${env:/app/pickembot/dev/slack-api-token~true}
+    stateUrl:
+      offline: ${env:STATE_URL}
+      dev: ${env:/app/pickembot/dev/state-url~true}
+    slackbotLambdaRole:
+      offline: "fake_slackbot_role"
+      dev: ${env:/app/pickembot/dev/slackbot-lambda-role}
+  webpack:
+    webpackConfig: 'webpack.config.js'
+    packager: 'yarn'
+    excludeFiles: src/**/*.spec.ts
+    includeModules:
+      forceExclude:
+        - aws-sdk
+
+
+functions:
+  slack:
+    handler: src/slack_handler.slackHandler
+    environment:
+      SLACK_SIGNING_SECRET: ${self:custom.config.signingSecret.${self:provider.stage}}
+      SLACK_API_TOKEN: ${self:custom.config.apiToken.${self:provider.stage}}
+      STATE_URL: ${self:custom.config.stateUrl.${self:provider.stage}}
+    role: ${self:custom.config.slackbotLambdaRole.${self:provider.stage}}
+    events:
+      - http:
+          path: slack
+          method: post
+
