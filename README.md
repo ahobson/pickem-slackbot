@@ -54,7 +54,33 @@ The state configuration is a URL that points to a location in s3 (e.g. `s3://buc
 The Signing Secret is under ther `Basic Information` section of your
 slackbot as `Signing Secret`.
 
-The Api Token is under they `Install App` as `Bot User OAuth Access Token`.
+The Api Token is under they `Install App` as `Bot User OAuth Access
+Token`.
+
+### Local Development
+
+Start docker compose
+
+```bash
+docker-compose -f docker-compose.yml run --rm --service-ports sls bash
+```
+
+Set up your environment variables
+```bash
+export SLACK_API_TOKEN=abcxyz
+export SLACK_SIGNING_SECRET=123pdq
+```
+
+Start the server with hot reloading
+``` bash
+./node_modules/.bin/ts-node-dev \
+  ./node_modules/.bin/sls offline --host 0.0.0.0 --printOutput
+```
+
+Start [ngrok](https://ngrok.com/).
+
+Configure the Request Url in slack to be the URL from ngrok with
+`/slack`.  e.g.  `https://something.ngrok.io/slack`
 
 ### Deploying
 

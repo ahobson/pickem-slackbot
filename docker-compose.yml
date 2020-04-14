@@ -9,8 +9,8 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     environment:
-      - WEBHOOK_URL
-      - SIGNING_SECRET
+      - SLACK_API_TOKEN
+      - SLACK_SIGNING_SECRET
       - SLS_DEBUG
     command: npx sls offline --host 0.0.0.0 --printOutput
     tty: true
