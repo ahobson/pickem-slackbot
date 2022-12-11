@@ -42,7 +42,7 @@
   "dependencies": {
     "@slack/events-api": "^2.3.0",
     "@slack/web-api": "^5.4.0",
-    "qs": "^6.9.1",
+    "qs": "^6.9.7",
     "request": "^2.88.0",
     "source-map": "^0.7.3",
     "source-map-support": "^0.5.16",
